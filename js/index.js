@@ -9,18 +9,15 @@ function printNumbers1(from, to, interval) {
   if (
     typeof from !== "number" ||
     typeof to !== "number" ||
-    typeof interval !== "number" ||
-    !Number.isSafeInteger(interval) ||
-    !Number.isSafeInteger(to) ||
-    !Number.isSafeInteger(from)
+    typeof interval !== "number"
   ) {
     throw new TypeError("Все три параметра должны быть числами");
   }
-  if (from > to) {
-    throw new RangeError("from не может быть > to");
+  if (from > to || !Number.isSafeInteger(from) || !Number.isSafeInteger(to)) {
+    throw new RangeError("from не может быть > to и должно быть целым");
   }
-  if (interval < 0) {
-    throw new RangeError("interval не может быть < 0");
+  if (interval < 0 || !Number.isSafeInteger(interval)) {
+    throw new RangeError("interval не может быть < 0 и должно быть целым");
   } else {
     let argument = from;
 
@@ -47,10 +44,10 @@ function printNumbers2(from, to, interval) {
     throw new TypeError("Все три параметра должны быть числами");
   }
   if (from > to || !Number.isSafeInteger(from) || !Number.isSafeInteger(to)) {
-    throw new RangeError("from не может быть > to");
+    throw new RangeError("from не может быть > to и должно быть целым");
   }
   if (interval < 0 || !Number.isSafeInteger(interval)) {
-    throw new RangeError("interval не может быть < 0");
+    throw new RangeError("interval не может быть < 0 и должно быть целым");
   } else {
     let current = from;
     setTimeout(function output() {
